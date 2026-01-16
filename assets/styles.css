@@ -13,6 +13,18 @@
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
 }
 
+[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #e2e8f0;
+  --muted: #94a3b8;
+  --surface: #111827;
+  --surface-dark: #1f2937;
+  --accent: #7db2f4;
+  --accent-2: #f5a267;
+  --white: #0b1220;
+  --shadow: 0 18px 40px rgba(2, 6, 23, 0.5);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -166,6 +178,11 @@ main {
   background: transparent;
   color: var(--accent);
   border-color: var(--accent);
+}
+
+.theme-toggle {
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .text-link {
