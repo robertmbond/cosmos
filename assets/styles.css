@@ -195,12 +195,11 @@ main {
 }
 
 .avatar {
-  width: 72px;
-  height: 72px;
+  width: 96px;
+  height: 96px;
   border-radius: 16px;
   object-fit: contain;
   object-position: top center;
-  border: 2px solid var(--surface-dark);
   display: block;
   flex-shrink: 0;
 }
