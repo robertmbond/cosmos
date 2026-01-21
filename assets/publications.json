@@ -1,0 +1,98 @@
+{
+  "canonicalTags": [
+    { "value": "network-analysis", "label": "Network analysis" },
+    { "value": "political-communication", "label": "Political communication" },
+    { "value": "misinformation", "label": "Misinformation" },
+    { "value": "health-communication", "label": "Health communication" },
+    { "value": "human-ai-interaction", "label": "Human-AI interaction" },
+    { "value": "ai-communication", "label": "AI & communication" },
+    { "value": "communication-technology", "label": "Communication technology" },
+    { "value": "media-effects", "label": "Media effects" },
+    { "value": "psychophysiology", "label": "Psychophysiology" },
+    { "value": "interpersonal-communication", "label": "Interpersonal communication" },
+    { "value": "methods", "label": "Methods" },
+    { "value": "computational-modeling", "label": "Computational modeling" },
+    { "value": "social-influence", "label": "Social influence" },
+    { "value": "public-opinion", "label": "Public opinion" }
+  ],
+  "publications": [
+    {
+      "title": "Networked Mobilization and Voter Turnout in Online Social Networks",
+      "authors": "Robert Bond",
+      "venue": "Journal of Communication",
+      "year": 2022,
+      "tags": [
+        "network-analysis",
+        "political-communication",
+        "methods",
+        "computational-modeling",
+        "social-influence"
+      ]
+    },
+    {
+      "title": "Dyadic Emotion Regulation in Digital Conversations",
+      "authors": "Mimi Brinberg",
+      "venue": "Communication Methods and Measures",
+      "year": 2021,
+      "tags": [
+        "interpersonal-communication",
+        "communication-technology",
+        "methods",
+        "computational-modeling",
+        "social-influence"
+      ]
+    },
+    {
+      "title": "Trust and Transparency in AI-Mediated Communication",
+      "authors": "Bingjie Liu",
+      "venue": "Communication Research",
+      "year": 2023,
+      "tags": [
+        "human-ai-interaction",
+        "ai-communication",
+        "communication-technology",
+        "methods",
+        "public-opinion"
+      ]
+    },
+    {
+      "title": "Health Information Diffusion in Online Communities",
+      "authors": "Jingbo Meng",
+      "venue": "Health Communication",
+      "year": 2020,
+      "tags": [
+        "network-analysis",
+        "health-communication",
+        "communication-technology",
+        "methods",
+        "social-influence"
+      ]
+    },
+    {
+      "title": "Psychophysiological Responses to Immersive Media Messages",
+      "authors": "Rob Potter",
+      "venue": "Journal of Media Psychology",
+      "year": 2024,
+      "tags": [
+        "media-effects",
+        "psychophysiology",
+        "communication-technology",
+        "methods",
+        "social-influence"
+      ]
+    },
+    {
+      "title": "News Exposure and Misinformation Correction Across Media Environments",
+      "authors": "Dominik Stecuła",
+      "venue": "Political Communication",
+      "year": 2022,
+      "tags": [
+        "misinformation",
+        "media-effects",
+        "political-communication",
+        "methods",
+        "public-opinion"
+      ]
+    }
+  ]
+}
