@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Publications · COSMOS Research Group</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="index.html">COSMOS Research Group</a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="members.html">People</a>
+        <a href="meetings.html">Meetings</a>
+        <a href="events.html">Internal Events</a>
+        <a href="speaker-series.html">Speaker Series</a>
+        <a href="publications.html" aria-current="page">Publications</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="button ghost theme-toggle" type="button" data-theme-toggle>
+        dark mode
+      </button>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <h1>Publications</h1>
+        <p>
+          Explore the COSMOS publications archive for recent articles, conference proceedings, and
+          methodological advances from our group.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Filter the archive</h2>
+          <p>Use tags and keywords to find specific topics, authors, or methods.</p>
+        </div>
+        <form class="card" action="#" method="get">
+          <div class="grid two">
+            <label>
+              Search publications
+              <input
+                type="search"
+                name="search"
+                placeholder="Search by title, author, or keyword"
+                autocomplete="off"
+              />
+            </label>
+            <label>
+              Filter by tag
+              <select name="tag">
+                <option value="">All tags</option>
+                <option value="networks">Networks</option>
+                <option value="ai">AI &amp; communication</option>
+                <option value="misinformation">Misinformation</option>
+                <option value="methods">Methods</option>
+              </select>
+            </label>
+          </div>
+          <div class="hero-actions">
+            <button class="button" type="submit">Apply filters</button>
+            <button class="button ghost" type="reset">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="section muted">
+        <div class="section-header">
+          <h2>Publications archive</h2>
+          <p>Publication entries will appear here as they are added to the site.</p>
+        </div>
+        <div id="publications-list" class="timeline" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 COSMOS Research Group · Ohio State University</p>
+      <div class="footer-links">
+        <a href="contact.html">Contact</a>
+        <a href="index.html">Home</a>
+      </div>
+    </footer>
+    <script src="assets/theme.js"></script>
+  </body>
+</html>
