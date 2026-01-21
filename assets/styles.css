@@ -214,8 +214,8 @@ main {
 }
 
 .avatar {
-  width: 96px;
-  height: 96px;
+  width: 192px;
+  height: 192px;
   border-radius: 16px;
   object-fit: contain;
   object-position: top center;
