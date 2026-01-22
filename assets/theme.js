@@ -21,3 +21,12 @@ if (themeToggleButton) {
     applyTheme(nextTheme);
   });
 }
+
+document.addEventListener("keydown", (event) => {
+  if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === "m") {
+    const demoPath = window.location.pathname.includes("/demos/")
+      ? "correlation-causation.html"
+      : "demos/correlation-causation.html";
+    window.location.href = demoPath;
+  }
+});
