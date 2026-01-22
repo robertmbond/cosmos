@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correlation ≠ Causation · COSMOS Demos</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <style>
+      .demo-layout {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: start;
+      }
+
+      .demo-card {
+        background: var(--white);
+        border: 1px solid var(--surface-dark);
+        border-radius: var(--radius);
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .demo-controls {
+        display: grid;
+        gap: 16px;
+      }
+
+      .control-group {
+        display: grid;
+        gap: 8px;
+      }
+
+      .control-row {
+        display: grid;
+        grid-template-columns: minmax(160px, 1fr) minmax(100px, 120px);
+        gap: 12px;
+        align-items: center;
+      }
+
+      .control-row input[type="range"] {
+        width: 100%;
+      }
+
+      .control-row output {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        color: var(--muted);
+      }
+
+      .control-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .toggle-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .results-list {
+        display: grid;
+        gap: 8px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .results-list strong {
+        color: var(--accent);
+      }
+
+      .plot-wrap {
+        display: grid;
+        gap: 12px;
+      }
+
+      canvas {
+        width: 100%;
+        height: auto;
+        background: var(--surface);
+        border-radius: 12px;
+        border: 1px solid var(--surface-dark);
+      }
+
+      .demo-note {
+        color: var(--muted);
+        margin-top: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="../index.html">
+        <img class="logo-mark" src="../assets/COSMOS logo.png" alt="COSMOS logo" />
+        <span class="logo-text">Computational and Statistical Models Group</span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">Home</a>
+        <a href="../members.html">People</a>
+        <a href="../events.html">Internal Events</a>
+        <a href="../speaker-series.html">Speaker Series</a>
+        <a href="../publications.html">Publications</a>
+        <a href="correlation-causation.html" aria-current="page">Demos</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <button class="button ghost theme-toggle" type="button" data-theme-toggle>
+        dark mode
+      </button>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Teaching demo</p>
+        <h1>Correlation ≠ Causation</h1>
+        <p class="lead">
+          A compact micro-simulation that shows how relationships can look causal even when they are
+          driven by confounding, reverse causality, or selection bias.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="demo-layout">
+          <div class="demo-card demo-controls">
+            <div class="control-group">
+              <label for="scenario">Scenario</label>
+              <select id="scenario" name="scenario">
+                <option value="confounding">Confounding (Z → X and Z → Y)</option>
+                <option value="reverse">Reverse causality (Y → X)</option>
+                <option value="collider">Collider/selection (X → S ← Y)</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <div class="control-row">
+                <label for="sampleSize">Sample size (N)</label>
+                <output id="sampleSizeValue" for="sampleSize">1000</output>
+              </div>
+              <input id="sampleSize" type="range" min="200" max="5000" step="100" value="1000" />
+            </div>
+
+            <div class="control-group">
+              <div class="control-row">
+                <label for="noise">Noise</label>
+                <output id="noiseValue" for="noise">0.4</output>
+              </div>
+              <input id="noise" type="range" min="0" max="1" step="0.05" value="0.4" />
+            </div>
+
+            <div class="control-group" data-scenario="confounding">
+              <div class="control-row">
+                <label for="confoundStrength">Z → X strength (a)</label>
+                <output id="confoundStrengthValue" for="confoundStrength">0.7</output>
+              </div>
+              <input id="confoundStrength" type="range" min="0" max="1" step="0.05" value="0.7" />
+            </div>
+
+            <div class="control-group" data-scenario="confounding">
+              <div class="control-row">
+                <label for="confoundOutcome">Z → Y strength (b)</label>
+                <output id="confoundOutcomeValue" for="confoundOutcome">0.7</output>
+              </div>
+              <input id="confoundOutcome" type="range" min="0" max="1" step="0.05" value="0.7" />
+            </div>
+
+            <div class="control-group" data-scenario="confounding">
+              <div class="control-row">
+                <label for="directEffect">X → Y direct effect (c)</label>
+                <output id="directEffectValue" for="directEffect">0.0</output>
+              </div>
+              <input id="directEffect" type="range" min="0" max="1" step="0.05" value="0" />
+            </div>
+
+            <div class="control-group" data-scenario="reverse">
+              <div class="control-row">
+                <label for="reverseStrength">Y → X strength (c)</label>
+                <output id="reverseStrengthValue" for="reverseStrength">0.8</output>
+              </div>
+              <input id="reverseStrength" type="range" min="0" max="1" step="0.05" value="0.8" />
+            </div>
+
+            <div class="control-group" data-scenario="reverse">
+              <div class="control-row">
+                <label for="reverseConfound">Z → Y strength (b)</label>
+                <output id="reverseConfoundValue" for="reverseConfound">0.4</output>
+              </div>
+              <input id="reverseConfound" type="range" min="0" max="1" step="0.05" value="0.4" />
+            </div>
+
+            <div class="control-group" data-scenario="collider">
+              <div class="control-row">
+                <label for="selectionStrength">Selection strength</label>
+                <output id="selectionStrengthValue" for="selectionStrength">0.7</output>
+              </div>
+              <input id="selectionStrength" type="range" min="0" max="1" step="0.05" value="0.7" />
+            </div>
+
+            <div class="control-group" data-scenario="collider">
+              <div class="control-row">
+                <label for="selectionThreshold">Selection threshold</label>
+                <output id="selectionThresholdValue" for="selectionThreshold">0.5</output>
+              </div>
+              <input id="selectionThreshold" type="range" min="0" max="1" step="0.05" value="0.5" />
+            </div>
+
+            <div class="control-group" data-scenario="confounding">
+              <label class="toggle-row" for="controlZ">
+                <input id="controlZ" type="checkbox" />
+                Control for Z in regression
+              </label>
+            </div>
+
+            <div class="control-group" data-scenario="collider">
+              <label class="toggle-row" for="conditionSelection">
+                <input id="conditionSelection" type="checkbox" checked />
+                Condition on S = 1 (selected sample)
+              </label>
+            </div>
+
+            <div class="control-actions">
+              <button class="button" type="button" id="generate">Generate data</button>
+              <button class="button ghost" type="button" id="analyze">Run analysis</button>
+              <button class="button ghost" type="button" id="reset">Reset</button>
+            </div>
+          </div>
+
+          <div class="demo-card plot-wrap">
+            <div class="results-list">
+              <div>Correlation r(X, Y): <strong id="corrValue">—</strong></div>
+              <div>OLS slope (Y ~ X): <strong id="slopeValue">—</strong></div>
+              <div>p-value (approx): <strong id="pValue">—</strong></div>
+              <div id="adjustedRow" hidden>Adjusted slope for X (Y ~ X + Z): <strong id="adjustedSlope">—</strong></div>
+              <div id="selectionRow" hidden>Selected sample size: <strong id="selectedCount">—</strong></div>
+            </div>
+            <canvas id="scatter" width="440" height="320" aria-label="Scatterplot of X versus Y" role="img"></canvas>
+          </div>
+        </div>
+
+        <p class="demo-note" id="scenarioNote"></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Computational and Statistical Models Group · Ohio State University</p>
+      <div class="footer-links">
+        <a href="../contact.html">Contact</a>
+        <a href="https://osu-cosmos.group" target="_blank" rel="noreferrer">Current site</a>
+      </div>
+    </footer>
+
+    <script src="../assets/theme.js"></script>
+    <script src="../assets/js/correlation-causation.js"></script>
+  </body>
+</html>
